@@ -35,7 +35,6 @@
         }
 
         .navbar.scrolled {
-            /* background: rgba(0, 0, 0, 0.95); */
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
@@ -703,122 +702,101 @@
         <p>&copy; 2025 Data Scientist & AI Engineer Portfolio.</p>
     </footer>
 
-    <script>
-        <script>
-        window.addEventListener('scroll', function () {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
+<script>
+    // 네비게이션 바 스크롤 효과
+    window.addEventListener('scroll', function () {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
-        } else {
+      } else {
         navbar.classList.remove('scrolled');
-        }})
-        // 모바일 메뉴 토글
-        const mobileToggle = document.querySelector('.mobile-toggle');
-        const navLinks = document.querySelector('.nav-links');
+      }
+    });
 
-        mobileToggle.addEventListener('click', () => {
-            mobileToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+    // 모바일 메뉴 토글
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-        // 네비게이션 링크 클릭 시 모바일 메뉴 닫기
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
+    mobileToggle.addEventListener('click', () => {
+      mobileToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
 
-        // 스크롤에 따른 네비게이션 바 스타일 변경
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
 
-        // 스크롤 애니메이션
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    // 스크롤 애니메이션
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // 애니메이션 대상 요소들
-        document.querySelectorAll('.skill-card, .project-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease-out';
-            observer.observe(el);
-        });
-
-        // 프로그레스 바 애니메이션
-        const progressBars = document.querySelectorAll('.progress-fill');
-        const progressObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-progress');
-                }
-            });
-        }, { threshold: 0.5 });
-
-        progressBars.forEach(bar => {
-            progressObserver.observe(bar);
-        });
-
-        // 부드러운 스크롤
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 70; // 네비게이션 바 높이만큼 오프셋
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // 동적 파티클 생성
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 3 + 's';
-            particle.style.animationDuration = (Math.random() * 3 + 4
-
-            const container = document.querySelector('.floating-particles');
-            container.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 7000);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
         }
+      });
+    }, observerOptions);
 
-        // 주기적으로 파티클 생성
-        setInterval(createParticle, 500);
-    </script>
-    <script>
-     window.addEventListener('scroll', function () {
-     const navbar = document.querySelector('.navbar');
-     if (window.scrollY > 50) {
-     navbar.classList.add('scrolled');
-     } else {
-     navbar.classList.remove('scrolled');
-     }
-     });
-    </script>
+    document.querySelectorAll('.skill-card, .project-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s ease-out';
+      observer.observe(el);
+    });
+
+    // 프로그레스 바
+    const progressBars = document.querySelectorAll('.progress-fill');
+    const progressObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-progress');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    progressBars.forEach(bar => {
+      progressObserver.observe(bar);
+    });
+
+    // 부드러운 스크롤
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 70;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // 파티클 생성
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 3 + 's';
+      particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+
+      const container = document.querySelector('.floating-particles');
+      container.appendChild(particle);
+
+      setTimeout(() => {
+        particle.remove();
+      }, 7000);
+    }
+
+    setInterval(createParticle, 500);
+  </script>
 </body>
 </html>
