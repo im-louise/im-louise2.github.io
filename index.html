@@ -35,7 +35,7 @@
         }
 
         .navbar.scrolled {
-            background: rgba(0, 0, 0, 0.95);
+            /* background: rgba(0, 0, 0, 0.95); */
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
@@ -700,7 +700,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Data Scientist & AI Engineer Portfolio. 데이터로 만드는 더 나은 미래.</p>
+        <p>&copy; 2025 Data Scientist & AI Engineer Portfolio.</p>
     </footer>
 
     <script>
@@ -798,3 +798,27 @@
             particle.style.left = Math.random() * 100 + '%';
             particle.style.animationDelay = Math.random() * 3 + 's';
             particle.style.animationDuration = (Math.random() * 3 + 4
+
+            const container = document.querySelector('.floating-particles');
+            container.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 7000);
+        }
+
+        // 주기적으로 파티클 생성
+        setInterval(createParticle, 500);
+    </script>
+    <script>
+     window.addEventListener('scroll', function () {
+     const navbar = document.querySelector('.navbar');
+     if (window.scrollY > 50) {
+     navbar.classList.add('scrolled');
+     } else {
+     navbar.classList.remove('scrolled');
+     }
+     });
+    </script>
+</body>
+</html>
